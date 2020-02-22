@@ -2,10 +2,8 @@ import axiosNews from "../../axiosNews";
 
 
 export const FETCH_NEWS_SUCCESS = 'FETCH_POSTS_SUCCESS';
-export const CREATE_NEWS_SUCCESS = 'CREATE_POST_SUCCESS';
 
 export const fetchNewsSuccess = news => ({type: FETCH_NEWS_SUCCESS, news});
-export const createNewsSuccess = () => ({type: CREATE_NEWS_SUCCESS});
 
 export const fetchNews = () => {
     return async (dispatch) => {
@@ -22,10 +20,20 @@ export const postNews = postData => {
     return async (dispatch) => {
         try {
             await axiosNews.post('/news', postData);
-            dispatch(createNewsSuccess());
             dispatch(fetchNews());
         } catch (e) {
             console.error(e);
         }
     };
+};
+
+export const deleteNews = (id) => {
+  return async (dispatch) => {
+      try {
+          await axiosNews.delete('/news/' + id);
+          dispatch(fetchNews());
+      } catch (e) {
+          console.error(e);
+      }
+  }
 };

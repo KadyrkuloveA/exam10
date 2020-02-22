@@ -2,14 +2,18 @@ import React, {Component} from 'react';
 import moment from 'moment';
 import {NavLink} from "react-router-dom";
 import {connect} from "react-redux";
-import {fetchNews} from "../../store/actions/newsActions";
-import './News.css';
+import {deleteNews, fetchNews} from "../../store/actions/newsActions";
 import PostThumbnail from "../../components/PostThumbnail/PostThumbnail";
+import './News.css';
 
 class News extends Component {
     componentDidMount() {
         this.props.fetchNews();
     }
+
+    deleteNews = async (id) => {
+        await this.props.deleteNews(id);
+    };
 
     render() {
         return (
@@ -25,9 +29,12 @@ class News extends Component {
                                 <p className="card-text">
                                     <NavLink className="text-dark" to='/'><u>Read Full Post >></u></NavLink>
                                 </p>
-                                <p className="card-text"><small className="text-muted">
-                                    {moment(post.datetime).format('MMMM Do YYYY, h:mm:ss a')}
-                                </small></p>
+                                <p className="card-text">
+                                    <small className="text-muted">
+                                        {moment(post.datetime).format('MMMM Do YYYY, h:mm:ss a')}
+                                    </small>
+                                    <u style={{cursor: 'pointer', marginLeft: '5px'}} onClick={() => this.deleteNews(post.id)}>Delete</u>
+                                </p>
                             </div>
                         </div>
                     ))}
@@ -42,7 +49,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchNews: () => dispatch(fetchNews())
+    fetchNews: () => dispatch(fetchNews()),
+    deleteNews: (id) => dispatch(deleteNews(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(News);
