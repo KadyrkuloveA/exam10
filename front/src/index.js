@@ -8,12 +8,14 @@ import * as serviceWorker from './serviceWorker';
 
 import App from './App';
 import newsReducer from "./store/reducers/newsReducer";
+import commentsReducer from "./store/reducers/commentsReducer";
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-    news: newsReducer
+    news: newsReducer,
+    comments: commentsReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)));

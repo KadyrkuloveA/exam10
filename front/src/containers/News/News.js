@@ -27,7 +27,7 @@ class News extends Component {
                             <div className="card-body">
                                 <h5 className="card-title">{post.title}</h5>
                                 <p className="card-text">
-                                    <NavLink className="text-dark" to='/'><u>Read Full Post >></u></NavLink>
+                                    <NavLink className="text-dark" to={'/news/' + post.id}><u>Read Full Post >></u></NavLink>
                                 </p>
                                 <p className="card-text">
                                     <small className="text-muted">
