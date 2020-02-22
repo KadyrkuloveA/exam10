@@ -19,7 +19,7 @@ const upload = multer({storage});
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    const items = await mysqlDb.getConnection().query('SELECT * FROM `news`');
+    const items = await mysqlDb.getConnection().query('SELECT `id`, `title`, `image`, `datetime` FROM `news`');
     res.send(items);
 });
 
