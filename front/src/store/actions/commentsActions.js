@@ -8,7 +8,7 @@ export const fetchCommentsSuccess = comments => ({type: FETCH_COMMENTS_SUCCESS, 
 export const fetchComments = (id) => {
     return async (dispatch) => {
         try {
-            const response = await axiosNews.get('/comments/' + id);
+            const response = await axiosNews.get('/comments?news_id=' + id);
             dispatch(fetchCommentsSuccess(response.data));
         } catch (e) {
             console.error(e);
@@ -16,10 +16,10 @@ export const fetchComments = (id) => {
     };
 };
 
-export const postComment = postData => {
+export const postComment = commentData => {
     return async (dispatch) => {
         try {
-            await axiosNews.post('/news', postData);
+            await axiosNews.post('/comments', commentData);
         } catch (e) {
             console.error(e);
         }
