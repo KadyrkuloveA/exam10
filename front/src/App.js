@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {Route, Switch} from "react-router-dom";
 import Navbar from "./components/UI/Navbar/Navbar";
 import News from "./containers/News/News";
+import PostNews from "./containers/PostNews/PostNews";
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
           </header>
           <Switch>
             <Route path="/" exact component={News} />
+            <Route path="/postNews" exact component={PostNews} />
           </Switch>
         </Fragment>
     );

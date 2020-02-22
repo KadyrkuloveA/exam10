@@ -18,10 +18,10 @@ export const fetchNews = () => {
     };
 };
 
-export const createNews = postData => {
+export const postNews = postData => {
     return async (dispatch) => {
         try {
-            await axiosNews.post('/posts', postData);
+            await axiosNews.post('/news', postData);
             dispatch(createNewsSuccess());
             dispatch(fetchNews());
         } catch (e) {
