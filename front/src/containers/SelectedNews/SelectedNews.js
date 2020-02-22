@@ -68,7 +68,7 @@ const SelectedNews = (props) => {
                             <div className='card mt-1 mb-1' key={comment.id}>
                                 <div className="card-body">
                                     <h5 className="card-title">{comment.author ? comment.author : 'Anonymous'}</h5>
-                                    <p className='card-text'>{comment.text}</p>
+                                    <p className='card-text'>{comment.text} <span onClick={}>X</span></p>
                                 </div>
                             </div>
                         ))
